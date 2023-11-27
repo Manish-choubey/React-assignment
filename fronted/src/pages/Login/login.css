@@ -1,0 +1,87 @@
+.main-login {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.image-contaner {
+  margin-top: 30px;
+  margin-left: 10px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  max-width: 400px;
+  margin-top: 50px;
+
+  padding: 20px;
+  border: 2px solid white;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(204, 192, 192, 0.1);
+}
+
+input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-top: 5px;
+  margin-right: 10px;
+}
+
+button {
+  width: 105%;
+  padding: 10px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+.error-msg,
+.success-msg {
+  margin-top: 10px;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.error-msg {
+  background-color: #ffcccc;
+  color: #cc0000;
+}
+
+.success-msg {
+  background-color: #ccffcc;
+  color: #008000;
+}
+
+/* login-responsive.css */
+
+@media (max-width: 767px) {
+  .main-login {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .main-login .image-contaner {
+    display: none;
+  }
+
+  /* Add additional styles to center the form within the container if needed */
+  form {
+    max-width: 300px; /* Optional: Set a maximum width for the form */
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
