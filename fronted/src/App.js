@@ -13,6 +13,7 @@ import DataUpload from "./pages/DataUploadPage";
 
 import { isAuthenticated } from "./componenet/Navbar";
 import "./App.css";
+import ProductDetails from "./pages/ProductDetails";
 
 const ProtectedRoute = ({ element: Element, loader, ...rest }) => {
   const [isAuth, setIsAuth] = useState(null);
@@ -62,6 +63,7 @@ const router = createBrowserRouter([
         ),
       },
       { path: "/upload", element: <DataUpload /> },
+      { path: "/product/:productId", element: <ProductDetails /> },
     ],
   },
 ]);
