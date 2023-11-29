@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react";
+import { useTheme } from "@mui/material/styles";
+
 import {
   Card,
   CardContent,
@@ -16,6 +18,43 @@ import "./dashBoard.css";
 const DashboardPage = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [tableData, setTableData] = useState([]);
+const theme = useTheme();<div className="search-container">
+<TextField
+  type="text"
+  label="Search Product Name"
+  variant="outlined"
+  value={searchQuery}
+  onChange={(e) => setSearchQuery(e.target.value)}
+  InputProps={{
+    endAdornment: (
+      <InputAdornment position="end">
+        <SearchIcon />
+      </InputAdornment>
+    ),
+  }}
+  sx={{
+    "& .MuiOutlinedInput-root": {
+      borderRadius: "10px",
+    },
+    "& .MuiInputBase-input": {
+      height: "15px",
+    },
+    "& .MuiInputLabel-root": {
+      transform: "translate(14px, 15px) scale(1)",
+    },
+    "& .MuiInputLabel-shrink": {
+      transform: "translate(14px, -6px) scale(0.75)",
+    },
+    width: "700px", 
+    [theme.breakpoints.down("sm")]: {
+      width: "100%", 
+      "& .MuiInputLabel-root": {
+        display: "none", 
+      },
+    },
+  }}
+/>
+</div>
 
   useEffect(() => {
     const storedData = localStorage.getItem("dataArray");
@@ -38,37 +77,43 @@ const DashboardPage = () => {
 
   return (
     <div className="main-container">
-      <div className="search-container">
-        <TextField
-          type="text"
-          label="Search Product Name"
-          variant="outlined"
-          value={searchQuery}
-          onChange={(e) => setSearchQuery(e.target.value)}
-          InputProps={{
-            endAdornment: (
-              <InputAdornment position="end">
-                <SearchIcon />
-              </InputAdornment>
-            ),
-          }}
-          sx={{
-            "& .MuiOutlinedInput-root": {
-              borderRadius: "10px",
-            },
-            "& .MuiInputBase-input": {
-              height: "15px",
-            },
+          <div className="search-container">
+      <TextField
+        type="text"
+        label="Search Product Name"
+        variant="outlined"
+        value={searchQuery}
+        onChange={(e) => setSearchQuery(e.target.value)}
+        InputProps={{
+          endAdornment: (
+            <InputAdornment position="end">
+              <SearchIcon />
+            </InputAdornment>
+          ),
+        }}
+        sx={{
+          "& .MuiOutlinedInput-root": {
+            borderRadius: "10px",
+          },
+          "& .MuiInputBase-input": {
+            height: "15px",
+          },
+          "& .MuiInputLabel-root": {
+            transform: "translate(14px, 15px) scale(1)",
+          },
+          "& .MuiInputLabel-shrink": {
+            transform: "translate(14px, -6px) scale(0.75)",
+          },
+          width: "auto", // Adjusted width to take full width
+          [theme.breakpoints.down("sm")]: {
             "& .MuiInputLabel-root": {
-              transform: "translate(14px, 15px) scale(1)",
+              display: "none",
             },
-            "& .MuiInputLabel-shrink": {
-              transform: "translate(14px, -6px) scale(0.75)",
-            },
-            width: "100%", // Adjusted width to take full width
-          }}
-        />
-      </div>
+          },
+        }}
+      />
+    </div>
+
 
       <Grid container spacing={3}>
         {tableData.map((item) => (

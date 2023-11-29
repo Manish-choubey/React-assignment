@@ -64,24 +64,28 @@ button:hover {
 
 /* login-responsive.css */
 
-@media (max-width: 767px) {
+/* ... (previous styles) */
+
+/* Responsive Styles */
+@media (max-width: 768px) {
   .main-login {
-    display: flex;
-    flex-direction: column;
+    flex-direction: column-reverse;
     align-items: center;
     justify-content: center;
   }
 
-  .main-login .image-contaner {
-    display: none;
+  .image-container {
+    margin-top: 20px; /* Add some space between the image and the form on mobile */
   }
 
-  /* Add additional styles to center the form within the container if needed */
+  .desktop-view {
+    display: none; /* Hide the desktop image on mobile */
+  }
+
   form {
-    max-width: 300px; /* Optional: Set a maximum width for the form */
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    width: 80%;
+    max-width: 300px;
   }
+
+  /* Adjust other styles as needed for mobile layout */
 }

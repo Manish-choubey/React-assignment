@@ -6,8 +6,8 @@ import {
   CardMedia,
   Typography,
   IconButton,
+  Grid,
 } from "@mui/material";
-import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import AttachMoneyIcon from "@mui/icons-material/AttachMoney";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
@@ -29,16 +29,9 @@ const ProductDetailPage = () => {
   }
 
   return (
-    <div
-      style={{
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        marginTop: "50px",
-      }}
-    >
-      <div>
-        <Card style={{ marginRight: "20px", borderRadius: "20px" }}>
+    <Grid container spacing={2} justifyContent="center" alignItems="center">
+      <Grid item xs={12} md={6}>
+        <Card style={{ borderRadius: "20px", width: "100%", marginTop:"50px" }}>
           <CardMedia
             component="img"
             alt={product.ProductName}
@@ -57,41 +50,20 @@ const ProductDetailPage = () => {
             </Typography>
           </CardContent>
         </Card>
-      </div>
-      <div
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "start",
-          marginLeft: "10px",
-        }}
-      >
-        <div>
-          <Typography variant="h6" style={{ marginBottom: "10px" }}>
-            Looking for the Best Rent?
-          </Typography>
-        </div>
-        <div>
-          <Typography variant="body1" style={{ marginBottom: "10px" }}>
-            Choose from over 1 million apartments, houses, condos,
-            <br />
-            and townhomes for rent.
-          </Typography>
-        </div>
-        <div>
-          <Typography variant="h6" style={{ marginBottom: "10px" }}>
-            Common Amenities:
-          </Typography>
-        </div>
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "row",
-            alignItems: "start",
-            justifyContent: "start",
-          }}
-        >
-          <div style={{ marginRight: "10px" }}>
+      </Grid>
+      <Grid item xs={12} md={6}>
+        <Typography variant="h6" style={{ marginBottom: "10px" }}>
+          Looking for the Best Rent?
+        </Typography>
+        <Typography variant="body1" style={{ marginBottom: "10px" }}>
+          Choose from over 1 million apartments, houses, condos, and townhomes
+          for rent.
+        </Typography>
+        <Typography variant="h6" style={{ marginBottom: "10px" }}>
+          Common Amenities:
+        </Typography>
+        <Grid container spacing={2}>
+          <Grid item xs={6} sm={3}>
             <IconButton>
               <div style={{ textAlign: "center" }}>
                 <LocationOnIcon />
@@ -100,8 +72,8 @@ const ProductDetailPage = () => {
                 </Typography>
               </div>
             </IconButton>
-          </div>
-          <div style={{ marginRight: "10px" }}>
+          </Grid>
+          <Grid item xs={6} sm={3}>
             <IconButton>
               <div style={{ textAlign: "center" }}>
                 <AttachMoneyIcon />
@@ -113,8 +85,8 @@ const ProductDetailPage = () => {
                 </Typography>
               </div>
             </IconButton>
-          </div>
-          <div style={{ marginRight: "10px" }}>
+          </Grid>
+          <Grid item xs={6} sm={3}>
             <IconButton>
               <div style={{ textAlign: "center" }}>
                 <CheckCircleIcon />
@@ -126,8 +98,8 @@ const ProductDetailPage = () => {
                 </Typography>
               </div>
             </IconButton>
-          </div>
-          <div>
+          </Grid>
+          <Grid item xs={6} sm={3}>
             <IconButton>
               <div style={{ textAlign: "center" }}>
                 <HomeIcon />
@@ -139,10 +111,10 @@ const ProductDetailPage = () => {
                 </Typography>
               </div>
             </IconButton>
-          </div>
-        </div>
-      </div>
-    </div>
+          </Grid>
+        </Grid>
+      </Grid>
+    </Grid>
   );
 };
 
