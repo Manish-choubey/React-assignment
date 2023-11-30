@@ -1,15 +1,42 @@
 import React, { useState } from "react";
-import Input from "../componenet/Input.js";
-import Button from "../componenet/Buttom.js";
-import img3 from "../asset/data.jpg";
-import "../pages/Login/login.css";
+import { styled } from "@mui/system";
+import TextField from "@mui/material/TextField";
+import Button from "@mui/material/Button";
+import Container from "@mui/material/Container";
+import Typography from "@mui/material/Typography";
+import Box from "@mui/material/Box";
+import Grid from "@mui/material/Grid";
+import Card from "@mui/material/Card";
+import CardContent from "@mui/material/CardContent";
+import CloudUploadIcon from "@mui/icons-material/CloudUpload";
+
+const MainContainer = styled(Grid)`
+  height: 100vh;
+`;
+
+const StyledCard = styled(Card)`
+  max-width: 400px;
+  margin: 0 auto;
+`;
+
+const FormContainer = styled(Grid)`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
+const ButtonContainer = styled(Box)`
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 20px;
+`;
 
 export default function DataUpload() {
   const [data, setData] = useState({
     ProductName: "",
-    price: Number,
+    price: "",
     description: "",
-    image: null, // Add image property to state
+    image: null,
   });
 
   const [dataArray, setDataArray] = useState([]);
@@ -59,50 +86,82 @@ export default function DataUpload() {
       // image: null, // Remove this line if you want to keep the image
     });
   };
-  
+
   return (
-    <div className="main-login">
-      <div className="image-contaner">
-        <img src={img3} alt="" height={500} width={400} />
-      </div>
-      <div>
-        <form>
-          <div>
-            <Input
-              label="ProductName"
-              type="text"
-              id="ProductName"
-              value={data.ProductName}
-              onChange={handleInputChange}
-            />
-            <Input
-              label="price"
-              type="Number"
-              id="price"
-              value={data.price}
-              onChange={handleInputChange}
-            />
-            <Input
-              label="description"
-              type="text"
-              id="description"
-              value={data.description}
-              onChange={handleInputChange}
-            />
-            {/* Image upload input */}
-            <input
-              type="file"
-              accept="image/*"
-              onChange={handleImageChange}
-            />
-          </div>
-          <div>
-            <Button type="button" textOnly onClick={handleFormSubmit}>
-              Submit
-            </Button>
-          </div>
-        </form>
-      </div>
-    </div>
+    <MainContainer container>
+      <FormContainer item xs={12}>
+        <StyledCard>
+          <CardContent>
+            <Typography variant="h5" component="div" gutterBottom>
+              Data Upload
+            </Typography>
+            <form onSubmit={handleFormSubmit}>
+              <Grid container spacing={2}>
+                <Grid item xs={12}>
+                  <TextField
+                    fullWidth
+                    label="Product Name"
+                    id="ProductName"
+                    value={data.ProductName}
+                    onChange={handleInputChange}
+                  />
+                </Grid>
+                <Grid item xs={12}>
+                  <TextField
+                    fullWidth
+                    label="Price"
+                    type="number"
+                    id="price"
+                    value={data.price}
+                    onChange={handleInputChange}
+                  />
+                </Grid>
+                <Grid item xs={12}>
+                  <TextField
+                    fullWidth
+                    label="Description"
+                    id="description"
+                    value={data.description}
+                    onChange={handleInputChange}
+                  />
+                </Grid>
+                <Grid item xs={12}>
+                  {/* Wrap the file input and button in a label */}
+                  <label htmlFor="image" style={{ display: "block" }}>
+                    Upload Image
+                    <input
+                      type="file"
+                      id="image"
+                      accept="image/*"
+                      onChange={handleImageChange}
+                      style={{ display: "none" }}
+                    />
+                  </label>
+                  <Button
+                    variant="outlined"
+                    component="span"
+                    startIcon={<CloudUploadIcon />}
+                  >
+                    Upload
+                  </Button>
+                  {data.image && (
+                    <img
+                      src={data.image}
+                      alt="Preview"
+                      style={{ width: "100%", marginTop: 10, borderRadius: 8 }}
+                    />
+                  )}
+                </Grid>
+                <Grid item xs={12}>
+                  <Button type="submit" variant="contained" color="primary">
+                    Submit
+                  </Button>
+                </Grid>
+              </Grid>
+            </form>
+          </CardContent>
+        </StyledCard>
+      </FormContainer>
+    </MainContainer>
   );
 }
