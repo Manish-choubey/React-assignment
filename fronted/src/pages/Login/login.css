@@ -7,6 +7,7 @@
 .image-contaner {
   margin-top: 30px;
   margin-left: 10px;
+  box-shadow: 0 0 10px rgba(204, 192, 192, 0.1);
 }
 
 form {
@@ -24,25 +25,23 @@ form {
 input {
   width: 100%;
   padding: 10px;
-  margin-bottom: 10px;
   border: 1px solid #ccc;
   border-radius: 5px;
-  margin-top: 5px;
   margin-right: 10px;
 }
 
 button {
   width: 105%;
   padding: 10px;
-  background-color: #007bff;
-  color: #fff;
+  background: linear-gradient(to right, gold, goldenrod);
+  color: #333;
   border: none;
   border-radius: 5px;
   cursor: pointer;
 }
 
 button:hover {
-  background-color: #0056b3;
+  background: linear-gradient(to right, gold, goldenrod);
 }
 
 .error-msg,
@@ -71,11 +70,14 @@ button:hover {
     align-items: center;
     justify-content: center;
   }
+  
 
   .main-login .image-contaner {
     display: none;
   }
-
+  .image-container {
+    display: none; /* Hide the image container when screen width is 600px or less */
+  }
   /* Add additional styles to center the form within the container if needed */
   form {
     max-width: 300px; /* Optional: Set a maximum width for the form */
@@ -83,5 +85,79 @@ button:hover {
     display: flex;
     justify-content: center;
     align-items: center;
+  }
+}
+
+
+.contact-container{
+  display: flex;
+  justify-content: space-around;
+  background-image: url("../../asset//img4.jpg");
+  background-size: cover;
+  background-position: center;
+  width: 100%;
+  height: 500px;
+  opacity: 0.8;
+  
+}
+
+.form-box {
+  position: relative;
+  background-color:white;
+  border-radius: 10px;
+  padding: 20px;
+  margin-top: 20px;
+  height: 400px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+
+.text-section {
+  text-align: center;
+  color: #fff;
+  margin-right: 20px; /* Adjust margin as needed */
+}
+
+.text-section h1 {
+  font-size: 2.5rem;
+  margin-bottom: 10px;
+}
+
+.text-section p {
+  font-size: 1.2rem;
+}
+/* Contact.css */
+
+.contact-container {
+  background-color: #f5f5f5;
+  padding: 40px 0;
+}
+
+.form-container {
+  border-radius: 20px;
+  background-color: #fff;
+  padding: 20px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+
+.text-section h1 {
+  color: #333;
+}
+
+.text-section p {
+  color: #666;
+}
+
+/* Add any additional styling as needed */
+@media (max-width: 767px) {
+  .contact-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 700px;
+  }
+
+  .form-box{
+    height: 450px;
   }
 }

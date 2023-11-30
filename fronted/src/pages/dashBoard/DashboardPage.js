@@ -7,11 +7,13 @@ import {
   Typography,
   Grid,
   InputAdornment,
+  Grow,
 } from "@mui/material";
 import { Link } from "react-router-dom";
 import SearchIcon from "@mui/icons-material/Search";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import "./dashBoard.css";
+import Contact from "../Contect";
 
 const DashboardPage = () => {
   const [searchQuery, setSearchQuery] = useState("");
@@ -23,75 +25,130 @@ const DashboardPage = () => {
     setTableData(parsedData);
   }, []);
 
-  useEffect(() => {
-    const storedData = localStorage.getItem("dataArray");
-    const parsedData = storedData ? JSON.parse(storedData) : [];
+  const dummyData = [
+    {
+      key: 1001,
+      ProductName: "Dummy Product 1",
+      price: "$10",
+      description: "This is a dummy product.",
+      image: require("../../asset/img1.jpg"),
+    },
+    {
+      key: 1002,
+      ProductName: "Dummy Product 2",
+      price: "$15",
+      description: "Another dummy product description.",
+      image: require("../../asset/img2.jpg"),
+    },
 
-    const filteredData = parsedData.filter(
+    {
+      key: 1002,
+      ProductName: "Dummy Product 2",
+      price: "$15",
+      description: "Another dummy product description.",
+      image: require("../../asset/img3.jpg"),
+    },
+  ];
+
+  const combinedData = [...dummyData, ...tableData];
+
+  const handleSearch = (query) => {
+    const filteredData = combinedData.filter(
       (item) =>
         item.ProductName &&
-        item.ProductName.toLowerCase().includes(searchQuery.toLowerCase())
+        item.ProductName.toLowerCase().includes(query.toLowerCase())
     );
-
     setTableData(filteredData);
-  }, [searchQuery]);
+  };
 
   return (
     <div className="main-container">
-      <div className="search-container">
-        <TextField
-          type="text"
-          label="Search Product Name"
-          variant="outlined"
-          value={searchQuery}
-          onChange={(e) => setSearchQuery(e.target.value)}
-          InputProps={{
-            endAdornment: (
-              <InputAdornment position="end">
-                <SearchIcon />
-              </InputAdornment>
-            ),
-          }}
-          sx={{
-            "& .MuiOutlinedInput-root": {
-              borderRadius: "10px",
-            },
-            "& .MuiInputBase-input": {
-              height: "15px",
-            },
-            "& .MuiInputLabel-root": {
-              transform: "translate(14px, 15px) scale(1)",
-            },
-            "& .MuiInputLabel-shrink": {
-              transform: "translate(14px, -6px) scale(0.75)",
-            },
-            width: "100%", // Adjusted width to take full width
-          }}
-        />
+      <div className="image-animtion">
+        <div className="overlay">
+          <h1 className="animated-text">Explore Your Big House Dream</h1>
+          <div className="search-container">
+            <TextField
+              type="text"
+              label="Search Home here"
+              variant="outlined"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              onKeyPress={(e) => {
+                if (e.key === "Enter") {
+                  handleSearch(searchQuery);
+                }
+              }}
+              InputProps={{
+                endAdornment: (
+                  <InputAdornment position="end">
+                    <SearchIcon onClick={() => handleSearch(searchQuery)} />
+                  </InputAdornment>
+                ),
+              }}
+              sx={{
+                "& .MuiOutlinedInput-root": {
+                  borderRadius: "10px",
+                },
+                "& .MuiInputBase-input": {
+                  height: "15px",
+                },
+                "& .MuiInputLabel-root": {
+                  transform: "translate(14px, 15px) scale(1)",
+                },
+                "& .MuiInputLabel-shrink": {
+                  transform: "translate(14px, -6px) scale(0.75)",
+                },
+                width: "100%", // Adjusted width to take full width
+              }}
+            />
+          </div>
+        </div>
       </div>
-
-      <Grid container spacing={3}>
-        {tableData.map((item) => (
+      <Grid container spacing={3} justifyContent="center">
+        {combinedData.slice(0, 6).map((item) => (
           <Grid
             item
             xs={12}
-            sm={6}
-            md={4}
-            lg={3}
+            sm={12} // Full width on small screens
+            md={4} // 3 cards in one line on larger screens
+            lg={4} // 3 cards in one line on larger screens
             key={item.key}
-            style={{ marginBottom: "20px", marginTop: "50px" }}
+            style={{ marginBottom: "20px", marginTop: "40px" }}
           >
-            <Link to={`/product/${item.key}`} style={{ textDecoration: "none" }}>
-              <Card style={{ height: "100%", borderRadius: "20px", display: "flex", flexDirection: "column" }}>
+            <Link
+              to={`/product/${item.key}`}
+              style={{ textDecoration: "none" }}
+            >
+              <Card
+                className="immersive-card"
+                style={{
+                  height: "100%",
+                  borderRadius: "20px",
+                  display: "flex",
+                  flexDirection: "column",
+                }}
+              >
                 <CardMedia
                   component="img"
                   alt={item.ProductName}
                   height="140"
                   image={item.image}
-                  style={{ height: 180, borderTopLeftRadius: "20px", borderTopRightRadius: "20px" }}
+                  style={{
+                    height: 180,
+                    borderTopLeftRadius: "20px",
+                    borderTopRightRadius: "20px",
+                  }}
                 />
-                <CardContent style={{ display: "flex", flexDirection: "column" }}>
-                  <div style={{ display: "flex", justifyContent: "space-between", marginBottom: "10px" }}>
+                <CardContent
+                  style={{ display: "flex", flexDirection: "column" }}
+                >
+                  <div
+                    style={{
+                      display: "flex",
+                      justifyContent: "space-between",
+                      marginBottom: "10px",
+                    }}
+                  >
                     <div>
                       <Typography variant="h5" component="div">
                         {item.ProductName}
@@ -111,6 +168,7 @@ const DashboardPage = () => {
           </Grid>
         ))}
       </Grid>
+      <Contact />
     </div>
   );
 };

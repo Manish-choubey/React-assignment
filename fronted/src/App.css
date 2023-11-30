@@ -1,9 +1,10 @@
-body {
-    margin: 0;
-    box-sizing: border-box;
-  
-  
-  }
+.main-login {
+  background-color: #f0f0f0; /* Choose a color that you find impressive */
+  min-height: 100vh; /* Ensure the background color covers the entire viewport height */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
   
 
   

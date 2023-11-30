@@ -1,17 +1,65 @@
 .main-container {
-    display: flex;
-    flex-direction: column;
-    max-width: auto;
-    margin: auto;
-    padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  max-width: auto;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #f0f0f0;
+}
+
+.image-animtion {
+  background-image: url("../../asset/image10.jpg");
+  background-size: cover;
+  background-position: center;
+}
+
+.search-container {
+  margin-top: 10px;
+  align-self: center; 
+  background-color: rgba(255, 255, 255, 0.7); 
+  width: 500px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); 
+}
+
+.overlay {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5); /* Adjust the overlay background color and opacity */
+}
+
+.animated-text {
+  color: #fff; /* Adjust the text color */
+  font-size: 2rem; /* Adjust the font size */
+  animation: fadeInUp 2s ease-in-out; /* Add your preferred animation */
+}
+/* dashBoard.css */
+.immersive-card:hover {
+  transform: scale(1.05);
+  transition: transform 0.3s ease-in-out;
+  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
+}
+
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
   }
-  
-  .search-container {
-    margin-top: 10px;
-    align-self: flex-end;
-    margin-right: 200px;
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
-  
-  
+}
+
+@media (max-width: 767px){
+.search-container{
+  width: 350px;
+}
+
+}
