@@ -7,7 +7,6 @@ import {
   Typography,
   Grid,
   InputAdornment,
-  Grow,
 } from "@mui/material";
 import { Link } from "react-router-dom";
 import SearchIcon from "@mui/icons-material/Search";
@@ -58,8 +57,9 @@ const DashboardPage = () => {
         item.ProductName &&
         item.ProductName.toLowerCase().includes(query.toLowerCase())
     );
-    setTableData(filteredData);
+    setTableData(filteredData.length > 0 ? filteredData : dummyData);
   };
+  
 
   return (
     <div className="main-container">
@@ -72,12 +72,11 @@ const DashboardPage = () => {
               label="Search Home here"
               variant="outlined"
               value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              onKeyPress={(e) => {
-                if (e.key === "Enter") {
-                  handleSearch(searchQuery);
-                }
-              }}
+               onChange={(e) => {
+            const query = e.target.value;
+            setSearchQuery(query);
+            handleSearch(query);
+          }}
               InputProps={{
                 endAdornment: (
                   <InputAdornment position="end">
