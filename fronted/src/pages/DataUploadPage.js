@@ -128,7 +128,15 @@ export default function DataUpload() {
                 <Grid item xs={12}>
                   {/* Wrap the file input and button in a label */}
                   <label htmlFor="image" style={{ display: "block" }}>
-                    Upload Image
+                  <Button
+                    variant="outlined"
+                    component="span"
+                    startIcon={<CloudUploadIcon />}
+                    
+                    
+                  >
+                    Upload
+                  </Button>
                     <input
                       type="file"
                       id="image"
@@ -137,13 +145,7 @@ export default function DataUpload() {
                       style={{ display: "none" }}
                     />
                   </label>
-                  <Button
-                    variant="outlined"
-                    component="span"
-                    startIcon={<CloudUploadIcon />}
-                  >
-                    Upload
-                  </Button>
+                 
                   {data.image && (
                     <img
                       src={data.image}
